@@ -1,16 +1,13 @@
-baseURL = "https://nicklanng.github.io/"
-title = "i do web stuff"
-copyright = "Copyright (c) 2018, all rights reserved."
-canonifyurls = true
+baseurl = "/"
+title = "Hugo Themes"
+copyright = "Copyright (c) 2008 - 2014, all rights reserved."
 languageCode = "en-US"
+canonifyurls = true
 paginate = 3
 theme = "hugo-dusk"
 
 googleAnalytics = ""
 disqusShortname = ""
-
-[author]
-  name = "nicklanng"
 
 SectionPagesMenu = "main"
 
@@ -31,20 +28,24 @@ pygmentsCodeFences = true
   identifier = "tag"
   url = "/tags/"
 
+[author]
+  name = ""
+
 [params.meta]
-  keywords = "blog, tech, go, web"
-  description = "i do web stuff."
+  keywords = ""
+  description = "Personal blog."
 
 [params]
-  github = "nicklanng"
-  twitter = "nicklanng"
-  email = "rinse@rinseworld.com"
+  email = "myemail"
+  github = "github id"
+  #gitlab = "gitlab id"
+  twitter = "twitter id"
+  #linkedin = "linkedin id"
 
 [params.colors]
   # hugo-dusk colors
   background = "#101010" # background color for the site
-  main = "#6699cc"
+  main = "#99cc66"
   text = "#dbdbdb"
   code-quote-bg = "#1D1F21" # background color for quotes and code blocks
   copyright = "#404040" # copyright text color
-
