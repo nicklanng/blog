@@ -3,7 +3,7 @@ title = "i do web stuff"
 copyright = "Copyright (c) 2018, all rights reserved."
 canonifyurls = true
 languageCode = "en-US"
-paginate = 3
+paginate = 5
 theme = "hugo-dusk"
 
 googleAnalytics = ""
