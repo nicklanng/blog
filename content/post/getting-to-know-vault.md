@@ -11,14 +11,15 @@ title = "Getting to Know Vault"
 
 +++
 
-#What is Vault?
+# What is Vault?
 
 Vault is a secrets management tool from the excellent people at Hashicorp. A constantly evolving solution, based on academia, that always passes security audits with flying colors. It feels like using an encrypted Redis or Memcached.
 
 From the website - https://www.vaultproject.io/
+
 > Vault secures, stores, and tightly controls access to tokens, passwords, certificates, API keys, and other secrets in modern computing. Vault handles leasing, key revocation, key rolling, and auditing. Through a unified API, users can access an encrypted Key/Value store and network encryption-as-a-service, or generate AWS IAM/STS credentials, SQL/NoSQL databases, X.509 certificates, SSH credentials, and more.
 
-#Set up a development environment
+# Set up a development environment
 
 I'm a Mac user with Homebrew installed, so to install Vault I simply run:
 {{< highlight bash >}}
@@ -73,11 +74,11 @@ $ export VAULT_ADDR='http://127.0.0.1:8200'
 
 The Vault server is now up and running,  unsealed and ready to play with!
 
-#What can you do with it?
+# What can you do with it?
 
 All of the operations here using the `vault` command line tool are available in the API. In fact, all the `vault` command is doing is calling the API, there's no special access route for the command line. Any application with the ability to communicate with HTTP APIs can communicate with Vault.
 
-##Key Value Storage
+## Key Value Storage
 The most basic operation Vault provides is storing and retrieving secrets in the Key Value backend.
 You can see all of the backends mounted in the server.
 {{< highlight bash >}}
@@ -139,7 +140,7 @@ Success! Deleted 'secret/mysecrets' if it existed.
 
 You can read more about the kv backend here https://www.vaultproject.io/docs/secrets/kv/index.html.
 
-##Encryption as a Service
+## Encryption as a Service
 The transit backend provides encryption of data, but does not store the result in the Vault, instead it returns the data to the caller. This can be useful if you want to keep the encryption keys in the vault but want to store the result in your applications primary data store.
 
 First, mount the transit backend into Vault.
@@ -197,14 +198,14 @@ $ echo "cGVyaGFwc19zb21lX3Bhc3N3b3JkCg==" | base64 --decode
 perhaps_some_password
 {{< /highlight >}}
 
-##Dynamic Secret Leasing
+## Dynamic Secret Leasing
 This is the capability that really makes Vault stand apart from its rivals.
 
 Vault is able to create credentials for various backends, on-request, and then revoke them again after some time. The upside is that you never need to create a static set of credentials for services like databases, cloud providers etc... that will be left around unless manually rotated. The credentials can exist for the amount of time they're are needed and then destroyed, minimizing the amount of damage any compromised credentials may cause.
 
 In this section I will show setting up MySQL and AWS credentials.
 
-##MySQL
+## MySQL
 First, mount the database backend.
 {{< highlight bash >}}
 $ vault mount database
@@ -276,7 +277,7 @@ $ mysql -uroot -proot -e "SELECT * FROM mysql.user"
 {{< /highlight >}}
 
 
-##AWS
+## AWS
 Vault also has a backend for generating AWS credentials on the fly.
 
 Like before, start by mounting the backend.
@@ -345,7 +346,7 @@ $ vault revoke aws/creds/deploy/0d042c53-aa8a-7ce7-9dfd-310351c465e5
 Success! Revoked the secret with ID 'aws/creds/deploy/0d042c53-aa8a-7ce7-9dfd-310351c465e5', if it existed.
 {{< /highlight >}}
 
-#Closing Thoughts
+# Closing Thoughts
 Hopefully, I've demonstrated here that Vault could completely change the way we think about security. No more manual rotation of keys, no static database credentials, primarily automated access to AWS can all massively reduce the risk of a serious data breach or an AWS hijacking by Bitcoin bandits.
 
 Have you used Vault in production? If so, please comment and tell me about your experience!
